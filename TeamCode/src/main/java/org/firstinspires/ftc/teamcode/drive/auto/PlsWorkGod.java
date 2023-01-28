@@ -106,15 +106,53 @@ public class PlsWorkGod extends LinearOpMode
                 .lineToSplineHeading(new Pose2d(-32,5, Math.toRadians(270)),
                         SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
                         SampleMecanumDrive.getAccelerationConstraint(50))
-                .lineToSplineHeading(new Pose2d(-32,7, Math.toRadians(270)))
+                .lineToSplineHeading(new Pose2d(-32,8, Math.toRadians(270)),
+                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                        SampleMecanumDrive.getAccelerationConstraint(50))
                 .strafeLeft(17.25)
-                .addTemporalMarker(() -> claw.setPosition(0.5))
+                .addTemporalMarker(() -> claw.setPosition(0.3))
                 .addDisplacementMarker(() -> {
                     slideTo(slideInitial + 300, .9);//power was 0.7
                 })
-                .lineToSplineHeading(new Pose2d(-39,10, Math.toRadians(180)))
-                .forward(13)
+                .lineToSplineHeading(new Pose2d(-39,10, Math.toRadians(180)),
+                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                        SampleMecanumDrive.getAccelerationConstraint(50))
+                .forward(12,
+                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                        SampleMecanumDrive.getAccelerationConstraint(50))
                 .addTemporalMarker(() -> claw.setPosition(1))
+                .waitSeconds(.2)
+                .addDisplacementMarker(() -> {
+                    slideTo(SL_HIGH, .9);//power was 0.7
+                })
+                .back(13,
+                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                        SampleMecanumDrive.getAccelerationConstraint(50))
+                .lineToSplineHeading(new Pose2d(-15.5,6, Math.toRadians(270)),
+                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                        SampleMecanumDrive.getAccelerationConstraint(50))
+                .addTemporalMarker(() -> claw.setPosition(0.3))
+                .addDisplacementMarker(() -> {
+                    slideTo(slideInitial + 200, .9);//power was 0.7
+                })
+                .lineToSplineHeading(new Pose2d(-39,10, Math.toRadians(180)),
+                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                        SampleMecanumDrive.getAccelerationConstraint(50))
+                .forward(11,
+                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                        SampleMecanumDrive.getAccelerationConstraint(50))
+                .addTemporalMarker(() -> claw.setPosition(1))
+                .waitSeconds(.2)
+                .addDisplacementMarker(() -> {
+                    slideTo(SL_HIGH, .9);//power was 0.7
+                })
+                .back(13,
+                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                        SampleMecanumDrive.getAccelerationConstraint(50))
+                .lineToSplineHeading(new Pose2d(-15.5,6, Math.toRadians(270)),
+                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
+                        SampleMecanumDrive.getAccelerationConstraint(50))
+                .addTemporalMarker(() -> claw.setPosition(0.3))
                 .build();
 
 
@@ -232,7 +270,7 @@ public class PlsWorkGod extends LinearOpMode
         }else if(tagOfInterest.id == MIDDLE){
 
             claw.setPosition(1);
-            sleep(1000);
+            sleep(1200);
             drive.followTrajectorySequence(RightTrajectory2);
 
         }else if (tagOfInterest.id == RIGHT){

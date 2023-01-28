@@ -171,9 +171,9 @@ public class FullTeleOP extends LinearOpMode {
             }
 
             if ((gamepad2.right_bumper)) {
-                claw.setPosition(1);
+                claw.setPosition(0.9);
             } else {
-                claw.setPosition(0.5);
+                claw.setPosition(0.3);
             }
 
 //            if (odsSensor.getRawLightDetected() >= MIN_DISTANCE && odsSensor.getRawLightDetected() <= MAX_DISTANCE) {
