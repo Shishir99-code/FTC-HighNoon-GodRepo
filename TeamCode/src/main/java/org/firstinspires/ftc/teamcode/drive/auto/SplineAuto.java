@@ -41,7 +41,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import java.util.ArrayList;
 
 @Autonomous
-public class PlsWorkGod extends LinearOpMode
+public class SplineAuto extends LinearOpMode
 {
     OpenCvCamera camera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
@@ -101,58 +101,26 @@ public class PlsWorkGod extends LinearOpMode
 
         TrajectorySequence RightTrajectory2 = drive.trajectorySequenceBuilder(startPose)
                 .addDisplacementMarker(() -> {
-                    slideTo(slideInitial + SL_HIGH, .7);
+                    //slideTo(slideInitial + SL_HIGH, .7);
                 })
-                .lineToSplineHeading(new Pose2d(-32,5, Math.toRadians(270)),
-                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
-                        SampleMecanumDrive.getAccelerationConstraint(50))
-                .lineToSplineHeading(new Pose2d(-32,8, Math.toRadians(270)),
-                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
-                        SampleMecanumDrive.getAccelerationConstraint(50))
-                .strafeLeft(17.25)
-                .addTemporalMarker(() -> claw.setPosition(0.3))
+                .splineToSplineHeading(new Pose2d(-31, 8, Math.toRadians(315)), Math.toRadians(290))
+                .UNSTABLE_addTemporalMarkerOffset(0, () -> {})
                 .addDisplacementMarker(() -> {
-                    slideTo(slideInitial + 300, .9);//power was 0.7
+                    //slideTo(slideInitial + 300, .7);
                 })
-                .lineToSplineHeading(new Pose2d(-39,10, Math.toRadians(180)),
-                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
-                        SampleMecanumDrive.getAccelerationConstraint(50))
-                .forward(12,
-                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
-                        SampleMecanumDrive.getAccelerationConstraint(50))
-                .addTemporalMarker(() -> claw.setPosition(1))
-                .waitSeconds(.2)
+                .splineToLinearHeading(new Pose2d(-40, 14, Math.toRadians(180)), Math.toRadians(190))
+                .splineToSplineHeading(new Pose2d(-54, 12, Math.toRadians(180)), Math.toRadians(180))
+                .waitSeconds(0.1)
+                .UNSTABLE_addTemporalMarkerOffset(0.2, () -> {})
                 .addDisplacementMarker(() -> {
-                    slideTo(SL_HIGH, .9);//power was 0.7
+                    //slideTo(slideInitial + SL_HIGH, .7);
                 })
-                .back(13,
-                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
-                        SampleMecanumDrive.getAccelerationConstraint(50))
-                .lineToSplineHeading(new Pose2d(-15.5,6, Math.toRadians(270)),
-                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
-                        SampleMecanumDrive.getAccelerationConstraint(50))
-                .addTemporalMarker(() -> claw.setPosition(0.3))
+                .splineToLinearHeading(new Pose2d(-40, 14, Math.toRadians(180)), Math.toRadians(190))
+                .lineToSplineHeading(new Pose2d(-31, 8, Math.toRadians(315)))
+                .UNSTABLE_addTemporalMarkerOffset(0, () -> {})
                 .addDisplacementMarker(() -> {
-                    slideTo(slideInitial + 200, .9);//power was 0.7
+                    //slideTo(slideInitial + 300, .7);
                 })
-                .lineToSplineHeading(new Pose2d(-39,10, Math.toRadians(180)),
-                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
-                        SampleMecanumDrive.getAccelerationConstraint(50))
-                .forward(11,
-                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
-                        SampleMecanumDrive.getAccelerationConstraint(50))
-                .addTemporalMarker(() -> claw.setPosition(1))
-                .waitSeconds(.2)
-                .addDisplacementMarker(() -> {
-                    slideTo(SL_HIGH, .9);//power was 0.7
-                })
-                .back(13,
-                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
-                        SampleMecanumDrive.getAccelerationConstraint(50))
-                .lineToSplineHeading(new Pose2d(-15.5,6, Math.toRadians(270)),
-                        SampleMecanumDrive.getVelocityConstraint(60, DriveConstants.MAX_ANG_VEL, DriveConstants.TRACK_WIDTH),
-                        SampleMecanumDrive.getAccelerationConstraint(50))
-                .addTemporalMarker(() -> claw.setPosition(0.3))
                 .build();
 
 
